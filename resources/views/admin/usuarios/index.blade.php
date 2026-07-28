@@ -1,0 +1,9 @@
+@extends('layouts.app')
+
+@section('title', 'Usuarios')
+
+@section('content')
+<div class="d-flex justify-content-between align-items-center mb-3"><h1 class="h3 mb-0">Usuarios</h1><div><a href="{{ route('admin.roles.index') }}" class="btn btn-outline-primary me-2">Gestionar roles</a><a href="{{ route('admin.usuarios.create') }}" class="btn btn-primary">Nuevo usuario</a></div></div>
+<form class="row g-2 mb-3" method="GET"><div class="col-md-10"><input name="buscar" value="{{ request('buscar') }}" class="form-control" placeholder="Buscar por nombre o correo"></div><div class="col-md-2 d-grid"><button class="btn btn-outline-primary">Buscar</button></div></form>
+<div class="card border-0 shadow-sm"><div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Estado</th><th class="text-end">Acciones</th></tr></thead><tbody>@forelse($usuarios as $usuario)<tr><td>{{ $usuario->nombre }}</td><td>{{ $usuario->email }}</td><td>{{ $usuario->rol?->nombre }}</td><td><span class="badge text-bg-{{ $usuario->activo ? 'success' : 'secondary' }}">{{ $usuario->activo ? 'Activo' : 'Inactivo' }}</span></td><td class="text-end"><a href="{{ route('admin.usuarios.edit', $usuario) }}" class="btn btn-sm btn-outline-primary">Editar</a>@if($usuario->activo && ! $usuario->is(auth()->user()))<form class="d-inline" method="POST" action="{{ route('admin.usuarios.destroy', $usuario) }}">@csrf @method('DELETE')<button class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Desactivar este usuario?')">Desactivar</button></form>@endif</td></tr>@empty<tr><td colspan="5" class="text-center text-secondary py-4">No hay usuarios registrados.</td></tr>@endforelse</tbody></table></div><div class="card-footer bg-white">{{ $usuarios->links() }}</div></div>
+@endsection

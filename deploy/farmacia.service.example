@@ -1,0 +1,20 @@
+[Unit]
+Description=Farmacia Académica - Laravel
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/farmacia
+ExecStart=/usr/bin/php artisan serve --host=0.0.0.0 --port=8000
+Restart=always
+RestartSec=5
+Environment=APP_ENV=production
+Environment=APP_DEBUG=false
+
+# El proyecto necesita escribir sesiones, caché, logs y vistas compiladas.
+ReadWritePaths=/var/www/farmacia/storage /var/www/farmacia/bootstrap/cache
+
+[Install]
+WantedBy=multi-user.target

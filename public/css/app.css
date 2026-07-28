@@ -1,0 +1,100 @@
+:root {
+    --pharmacy-ink: #172337;
+    --pharmacy-blue: #2855a6;
+    --pharmacy-blue-deep: #1d3d7a;
+    --pharmacy-gold: #f5b91d;
+    --pharmacy-mint: #bdebdc;
+    --pharmacy-paper: #f5f7fb;
+    --pharmacy-line: #e4e9f2;
+    --pharmacy-muted: #6d7890;
+    --bs-primary: var(--pharmacy-blue);
+    --bs-primary-rgb: 40, 85, 166;
+    --bs-body-bg: var(--pharmacy-paper);
+    --bs-body-color: var(--pharmacy-ink);
+    --bs-border-color: var(--pharmacy-line);
+    --bs-border-radius: 0.8rem;
+    --bs-border-radius-lg: 1.15rem;
+}
+
+* { box-sizing: border-box; }
+
+body.app-shell {
+    background: var(--pharmacy-paper);
+    color: var(--pharmacy-ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: -0.01em;
+}
+
+.app-navbar {
+    background: var(--pharmacy-ink) !important;
+    border-bottom: 3px solid var(--pharmacy-gold);
+    box-shadow: 0 8px 24px rgba(23, 35, 55, 0.12);
+}
+
+.app-navbar .navbar-brand { letter-spacing: -0.03em; }
+.app-navbar .nav-link { color: rgba(255, 255, 255, 0.68); font-size: 0.88rem; font-weight: 600; padding: 0.65rem 0.8rem !important; border-radius: 0.55rem; transition: color .2s ease, background .2s ease; }
+.app-navbar .nav-link:hover, .app-navbar .nav-link.active { color: #fff; background: rgba(255, 255, 255, 0.1); }
+.app-navbar .navbar-text { font-size: 0.8rem; color: rgba(255, 255, 255, 0.72) !important; }
+.app-navbar .navbar-toggler { border-color: rgba(255, 255, 255, .25); }
+.app-navbar .navbar-toggler:focus { box-shadow: 0 0 0 .2rem rgba(245, 185, 29, .3); }
+.app-logo { object-fit: cover; border: 2px solid rgba(255,255,255,.85); }
+
+.app-main { min-height: calc(100vh - 74px); }
+.page-kicker { color: var(--pharmacy-blue); font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.page-title { font-size: clamp(1.65rem, 2.8vw, 2.35rem); font-weight: 800; letter-spacing: -0.055em; }
+.page-subtitle { color: var(--pharmacy-muted); max-width: 48rem; }
+
+.card { border: 1px solid var(--pharmacy-line) !important; box-shadow: 0 12px 34px rgba(34, 55, 92, .06) !important; }
+.card-header, .card-footer { border-color: var(--pharmacy-line); }
+.card-header { font-weight: 750; }
+.module-card { position: relative; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
+.module-card::after { content: ""; position: absolute; width: 7rem; height: 7rem; right: -2.5rem; bottom: -3rem; border-radius: 50%; background: var(--pharmacy-mint); opacity: .55; }
+.module-card:hover { transform: translateY(-3px); box-shadow: 0 18px 38px rgba(34, 55, 92, .12) !important; }
+.module-card > * { position: relative; z-index: 1; }
+
+.stat-card { min-height: 145px; position: relative; overflow: hidden; }
+.stat-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--stat-color, var(--pharmacy-blue)); }
+.stat-card .stat-label { color: var(--pharmacy-muted); font-size: .76rem; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; }
+.stat-card .stat-value { color: var(--stat-color, var(--pharmacy-blue)); font-size: 2.6rem; font-weight: 850; line-height: 1; letter-spacing: -0.08em; }
+.stat-icon { color: var(--stat-color, var(--pharmacy-blue)); font-size: 1.25rem; opacity: .75; }
+
+.alert { border: 0; border-left: 4px solid currentColor; border-radius: .55rem; }
+.alert-danger { color: #9a3342; background: #fff0f1; }
+.alert-warning { color: #946c00; background: #fff8dc; }
+.alert-info { color: #1b6d7d; background: #e9f8fb; }
+.alert-success { color: #19704b; background: #e8f7ef; }
+
+.btn { border-radius: .55rem; font-weight: 700; padding: .62rem 1rem; }
+.btn-primary { --bs-btn-bg: var(--pharmacy-blue); --bs-btn-border-color: var(--pharmacy-blue); --bs-btn-hover-bg: var(--pharmacy-blue-deep); --bs-btn-hover-border-color: var(--pharmacy-blue-deep); }
+.btn-outline-primary { --bs-btn-color: var(--pharmacy-blue); --bs-btn-border-color: #b8c9eb; --bs-btn-hover-bg: var(--pharmacy-blue); --bs-btn-hover-border-color: var(--pharmacy-blue); }
+.btn-outline-secondary { border-color: #c8d0dd; color: var(--pharmacy-muted); }
+
+.table { --bs-table-bg: transparent; margin-bottom: 0; }
+.table thead th { background: #f8faff; color: var(--pharmacy-muted); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.table td, .table th { padding: 1rem .9rem; border-color: var(--pharmacy-line); }
+.table tbody tr { transition: background .15s ease; }
+.table tbody tr:hover { --bs-table-hover-bg: #f8faff; }
+.table-responsive { border-radius: var(--bs-border-radius); }
+
+.form-control, .form-select { border-color: #d5dce8; border-radius: .6rem; padding: .7rem .8rem; }
+.form-control:focus, .form-select:focus { border-color: var(--pharmacy-blue); box-shadow: 0 0 0 .22rem rgba(40, 85, 166, .12); }
+.form-label { color: var(--pharmacy-ink); font-size: .82rem; font-weight: 750; }
+.pagination { --bs-pagination-color: var(--pharmacy-blue); --bs-pagination-active-bg: var(--pharmacy-blue); --bs-pagination-active-border-color: var(--pharmacy-blue); }
+.badge { font-weight: 750; letter-spacing: .01em; padding: .45em .65em; }
+
+.login-page { min-height: 100vh; background: radial-gradient(circle at 12% 18%, rgba(245,185,29,.2), transparent 25rem), linear-gradient(135deg, #eaf0fb 0%, #f8fafc 52%, #e8f6f0 100%); }
+.login-card { overflow: hidden; border: 1px solid rgba(255,255,255,.9) !important; box-shadow: 0 24px 70px rgba(23,35,55,.16) !important; }
+.login-brand { background: var(--pharmacy-ink); color: #fff; padding: 1.6rem 1.5rem; position: relative; }
+.login-brand::after { content: ""; position: absolute; width: 9rem; height: 9rem; right: -3.5rem; bottom: -4.5rem; border-radius: 50%; background: var(--pharmacy-gold); }
+.login-logo { position: relative; z-index: 1; border: 5px solid #fff; object-fit: cover; }
+.login-copy { position: relative; z-index: 1; }
+
+.receipt-actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+@media (max-width: 575.98px) {
+    .app-navbar .navbar-text { display: none; }
+    .table td, .table th { padding: .8rem .65rem; }
+    .receipt-actions .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
