@@ -62,7 +62,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ### Puesta en marcha local
 
+Consulta [la guía de configuración del entorno](docs/CONFIGURACION_ENTORNO.md) antes de iniciar.
+
 ```bash
+cp .env.example .env
 composer install
 php artisan key:generate
 php artisan migrate:fresh --seed
