@@ -51,4 +51,13 @@ class UsuarioRequest extends FormRequest
             }
         });
     }
+
+    public function messages(): array
+    {
+        return [
+            'password.required' => 'La contraseña es obligatoria al crear un usuario.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.confirmed' => 'La contraseña y su confirmación deben coincidir.',
+        ];
+    }
 }

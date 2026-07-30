@@ -38,6 +38,20 @@ class UsuarioTest extends TestCase
         $this->assertDatabaseHas('usuarios', ['email' => 'nuevo@farmacia.test', 'id_rol' => $rol->id_rol, 'activo' => true]);
     }
 
+    public function test_contraseña_debe_tener_minimo_ocho_caracteres_y_confirmarse(): void
+    {
+        $this->seed();
+        $rol = Rol::query()->where('nombre', 'Vendedor')->firstOrFail();
+
+        $this->actingAs($this->admin())->post(route('admin.usuarios.store'), [
+            'nombre' => 'Usuario inválido',
+            'email' => 'password-invalido@farmacia.test',
+            'password' => 'corta',
+            'password_confirmation' => 'distinta',
+            'id_rol' => $rol->id_rol,
+        ])->assertSessionHasErrors(['password']);
+    }
+
     public function test_vendedor_no_puede_gestionar_usuarios_ni_roles(): void
     {
         $this->seed();
