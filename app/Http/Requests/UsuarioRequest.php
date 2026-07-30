@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Usuario;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UsuarioRequest extends FormRequest
 {
@@ -21,9 +22,21 @@ class UsuarioRequest extends FormRequest
             'nombre' => ['required', 'string', 'max:120'],
             'email' => ['required', 'email', 'max:255'],
             'password' => $passwordRules,
-            'id_rol' => ['required', 'integer', 'exists:roles,id_rol'],
+            'id_rol' => [
+                'required',
+                'integer',
+                Rule::exists('roles', 'id_rol')->where(fn ($query) => $query->where('activo', true)),
+            ],
             'activo' => ['sometimes', 'boolean'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'nombre' => trim((string) $this->input('nombre')),
+            'email' => strtolower(trim((string) $this->input('email'))),
+        ]);
     }
 
     public function withValidator($validator): void

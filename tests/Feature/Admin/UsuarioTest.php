@@ -56,6 +56,21 @@ class UsuarioTest extends TestCase
         $this->assertTrue($this->admin()->fresh()->activo);
     }
 
+    public function test_no_se_puede_asignar_un_rol_inactivo(): void
+    {
+        $this->seed();
+        $rol = Rol::query()->where('nombre', 'Vendedor')->firstOrFail();
+        $rol->update(['activo' => false]);
+
+        $this->actingAs($this->admin())->post(route('admin.usuarios.store'), [
+            'nombre' => 'Usuario con rol inactivo',
+            'email' => 'rol-inactivo@farmacia.test',
+            'password' => 'NuevaClave123!',
+            'password_confirmation' => 'NuevaClave123!',
+            'id_rol' => $rol->id_rol,
+        ])->assertSessionHasErrors('id_rol');
+    }
+
     public function test_administrador_puede_crear_rol(): void
     {
         $this->seed();

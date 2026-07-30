@@ -22,6 +22,7 @@ class MedicamentoRequest extends FormRequest
             'stock' => ['required', 'integer', 'min:0'],
             'fecha_vencimiento' => ['required', 'date'],
             'id_categoria' => ['required', 'integer', 'exists:categorias,id_categoria'],
+            'activo' => ['sometimes', 'boolean'],
         ];
     }
 

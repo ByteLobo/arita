@@ -37,6 +37,7 @@ Route::middleware(['auth', 'activo'])->group(function (): void {
     Route::middleware('rol:Administrador')->prefix('admin')->name('admin.')->group(function (): void {
         Route::get('/', fn () => view('admin.panel'))->name('panel');
         Route::resource('categorias', CategoriaController::class)->except(['show']);
+        Route::patch('medicamentos/{medicamento}/activar', [MedicamentoController::class, 'activate'])->name('medicamentos.activate');
         Route::resource('medicamentos', MedicamentoController::class)->except(['show']);
         Route::resource('proveedores', ProveedorController::class)
             ->parameters(['proveedores' => 'proveedor'])

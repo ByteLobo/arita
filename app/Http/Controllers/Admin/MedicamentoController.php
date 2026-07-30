@@ -67,4 +67,15 @@ class MedicamentoController extends Controller
 
         return back()->with('success', 'Medicamento desactivado.');
     }
+
+    public function activate(Medicamento $medicamento): RedirectResponse
+    {
+        if (! $medicamento->categoria?->activo) {
+            return back()->withErrors(['medicamento' => 'No puedes reactivar un medicamento cuya categoría está inactiva.']);
+        }
+
+        $medicamento->update(['activo' => true]);
+
+        return back()->with('success', 'Medicamento reactivado correctamente.');
+    }
 }

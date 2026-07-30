@@ -170,4 +170,17 @@ class CatalogoTest extends TestCase
         $this->assertFalse($medicamento->fresh()->activo);
         $this->assertFalse($proveedor->fresh()->activo);
     }
+
+    public function test_administrador_puede_reactivar_un_medicamento(): void
+    {
+        $this->seed();
+        $medicamento = Medicamento::query()->firstOrFail();
+        $medicamento->update(['activo' => false]);
+
+        $this->actingAs($this->admin())
+            ->patch(route('admin.medicamentos.activate', $medicamento))
+            ->assertRedirect();
+
+        $this->assertTrue($medicamento->fresh()->activo);
+    }
 }
